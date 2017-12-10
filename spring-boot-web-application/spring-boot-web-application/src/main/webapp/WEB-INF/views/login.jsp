@@ -4,4 +4,6 @@
 
 <body>
 	This is login.jsp
+	<br/>
+	Hello ${name}
 </body>
