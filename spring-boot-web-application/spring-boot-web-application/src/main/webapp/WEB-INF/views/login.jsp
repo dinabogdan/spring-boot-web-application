@@ -3,7 +3,9 @@
 </head>
 
 <body>
-	This is login.jsp
-	<br/>
-	Hello ${name}
+	<form method="post">
+		Name: <input type="text" name="name" />
+		Password: <input type="password" name="password" />
+		<input type="submit"  value="Submit" />
+	</form>
 </body>
