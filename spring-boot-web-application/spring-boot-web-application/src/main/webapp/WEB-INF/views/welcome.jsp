@@ -4,4 +4,5 @@
 
 <body>
 	<p>Welcome ${name} !</p>
+	<p>${name} your password is ${password}</p>
 </body>
