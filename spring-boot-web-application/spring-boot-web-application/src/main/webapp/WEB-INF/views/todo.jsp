@@ -11,6 +11,8 @@
 <body>
 	<div class="container">
 		<form:form method="post" commandName="todo">
+		<form:hidden path="id"/>
+		<form:hidden path="done" />
 			<fieldset class="form-group">
 				<form:label path="description">Description:</form:label>
 				<form:input path="description" name="description" type="text"
