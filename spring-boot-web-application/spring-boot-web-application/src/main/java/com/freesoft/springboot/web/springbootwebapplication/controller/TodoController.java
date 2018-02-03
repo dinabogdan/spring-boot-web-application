@@ -15,26 +15,26 @@ import com.freesoft.springboot.web.springbootwebapplication.service.TodoService;
 @Controller
 @SessionAttributes("name")
 public class TodoController {
-	
+
 	@Autowired
 	private TodoService todoService;
 
-	@RequestMapping(value="/list-todos", method=RequestMethod.GET)
+	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap modelMap) {
-		String name=(String) modelMap.get("name");
+		String name = (String) modelMap.get("name");
 		modelMap.put("todos", todoService.retrieveTodos(name));
 		return "list-todos";
 	}
-	
-	@RequestMapping(value="/add-todo", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/add-todo", method = RequestMethod.GET)
 	public String showAddTodo(ModelMap model) {
 		return "add-todo";
 	}
-	
-	@RequestMapping(value="/add-todo", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/add-todo", method = RequestMethod.POST)
 	public String addTodo(ModelMap model, @RequestParam String description) {
 		todoService.addTodo((String) model.get("name"), description, new Date(), false);
 		return "add-todo";
 	}
-	
+
 }
