@@ -18,24 +18,9 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String showLoginPage(Model model) {
-		// model.addAttribute("name", name);
-		return "login";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String showWelcomePage(@RequestParam String name, @RequestParam String password, ModelMap modelMap) {
-		Boolean isValid = loginService.validateUser(name, password);
-
-		if (!isValid) {
-			modelMap.put("invalidCredentials", new String("Invalid Credentials"));
-			return "login";
-		}
-
-		modelMap.addAttribute("name", name);
-		modelMap.addAttribute("password", password);
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String showLoginPage(ModelMap model) {
+		model.put("name", "Dina Bogdan");
 		return "welcome";
 	}
-
 }
