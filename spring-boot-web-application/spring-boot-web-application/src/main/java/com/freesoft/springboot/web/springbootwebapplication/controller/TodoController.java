@@ -1,13 +1,17 @@
 package com.freesoft.springboot.web.springbootwebapplication.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +26,13 @@ public class TodoController {
 
 	@Autowired
 	private TodoService todoService;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		// Date format I want to use: dd/MM/yyyy
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	}
 
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap modelMap) {
@@ -41,7 +52,7 @@ public class TodoController {
 		if (result.hasErrors()) {
 			return "todo";
 		}
-		todoService.addTodo((String) model.get("name"), todo.getDescription(), new Date(), false);
+		todoService.addTodo((String) model.get("name"), todo.getDescription(), todo.getTargetDate(), false);
 		return "redirect:/list-todos";
 	}
 
@@ -60,10 +71,10 @@ public class TodoController {
 
 	@RequestMapping(value = "/update-todo", method = RequestMethod.POST)
 	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "todo";
 		}
-		todo.setUser((String)model.get("name"));
+		todo.setUser((String) model.get("name"));
 		todoService.updateTodo(todo);
 		return "redirect:/list-todos";
 	}
