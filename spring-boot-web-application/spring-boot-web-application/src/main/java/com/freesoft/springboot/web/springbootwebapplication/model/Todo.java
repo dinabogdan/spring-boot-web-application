@@ -2,11 +2,16 @@ package com.freesoft.springboot.web.springbootwebapplication.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 public class Todo {
 
 	private Integer id;
 	private String user;
+	
+	@Size(min=10, message="Enter at least 10 chars!")
 	private String description;
+	
 	private Date targetDate;
 	private Boolean isDone;
 
