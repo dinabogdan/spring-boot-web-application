@@ -5,9 +5,7 @@
 </head>
 
 <body>
-	Here is the list of your todos: ${todos}
-	<br/>
-	Your name is: ${name }
+	Here is the list of ${name }'s todos: ${todos}
 	<br/>
 	<a href="/add-todo">Add a new Todo</a>
 </body>

@@ -4,9 +4,9 @@
 	</head>
 	
 	<body>
-		Add a new Todo
+		Add a new Todo for ${name }
 		<form method="post">
-			Description: <input name="desc" type="text" />
+			Description: <input name="description" type="text" />
 			<input type="submit" value="Add"/>
 		</form>
 	</body>

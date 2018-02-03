@@ -59,4 +59,10 @@ public class Todo {
 		this.isDone = isDone;
 	}
 
+	@Override
+	public String toString() {
+		return "Todo [id=" + id + ", user=" + user + ", description=" + description + ", targetDate=" + targetDate
+				+ ", isDone=" + isDone + "]";
+	}
+
 }
